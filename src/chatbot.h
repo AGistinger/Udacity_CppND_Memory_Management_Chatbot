@@ -44,7 +44,6 @@ public:
     GraphNode* GetRootNode() { return _rootNode; }
     ChatLogic* GetChatLogic() { return _chatLogic; }
     
-
     // communication
     void ReceiveMessageFromUser(std::string message);
 };

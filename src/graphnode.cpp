@@ -1,5 +1,6 @@
 #include "graphedge.h"
 #include "graphnode.h"
+#include "chatlogic.h"
 
 GraphNode::GraphNode(int id)
 {
@@ -36,13 +37,16 @@ void GraphNode::MoveChatbotHere(ChatBot &&chatbot)
 {
     _chatBot = ChatBot(std::move(chatbot));
     _chatBot.SetRootNode(_chatBot.GetRootNode());
-    _chatBot.SetChatLogicHandle(_chatBot.GetChatLogic());
+    _chatBot.GetChatLogic()->SetChatbotHandle(&_chatBot);
     _chatBot.SetCurrentNode(this);
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-    newNode->MoveChatbotHere(std::move(_chatBot));
+    ChatBot chat_bot = ChatBot("../images/chatbot.png");
+    chat_bot.SetRootNode(_chatBot.GetRootNode());
+    _chatBot.GetChatLogic()->SetChatbotHandle(&chat_bot);
+    newNode->MoveChatbotHere(std::move(chat_bot));
 }
 ////
 //// EOF STUDENT CODE
