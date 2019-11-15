@@ -37,7 +37,7 @@ void GraphNode::MoveChatbotHere(ChatBot &&chatbot)
 {
     _chatBot = ChatBot(std::move(chatbot));
     _chatBot.SetRootNode(_chatBot.GetRootNode());
-    _chatBot.GetChatLogic()->SetChatbotHandle(&_chatBot);
+    _chatBot.GetChatLogicHandle()->SetChatbotHandle(&_chatBot);
     _chatBot.SetCurrentNode(this);
 }
 
@@ -45,7 +45,7 @@ void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
     ChatBot chat_bot = ChatBot("../images/chatbot.png");
     chat_bot.SetRootNode(_chatBot.GetRootNode());
-    _chatBot.GetChatLogic()->SetChatbotHandle(&chat_bot);
+  	chat_bot.SetChatLogicHandle(_chatBot.GetChatLogicHandle());
     newNode->MoveChatbotHere(std::move(chat_bot));
 }
 ////
