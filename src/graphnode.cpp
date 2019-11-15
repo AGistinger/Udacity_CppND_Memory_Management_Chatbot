@@ -11,8 +11,6 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    
-
     ////
     //// EOF STUDENT CODE
 }
@@ -36,7 +34,9 @@ void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
 ////
 void GraphNode::MoveChatbotHere(ChatBot &&chatbot)
 {
-    _chatBot = chatbot;
+    _chatBot = ChatBot(std::move(chatbot));
+    _chatBot.SetRootNode(_chatBot.GetRootNode());
+    _chatBot.SetChatLogicHandle(_chatBot.GetChatLogic());
     _chatBot.SetCurrentNode(this);
 }
 
